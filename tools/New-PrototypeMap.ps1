@@ -220,7 +220,7 @@ function Write-TilesetImage {
 
 function New-LayerData {
     param([int]$DefaultGid = 0)
-    $data = New-Object int[] ($mapWidth * $mapHeight)
+    $data = ,0 * ($mapWidth * $mapHeight)
     if ($DefaultGid -ne 0) {
         for ($i = 0; $i -lt $data.Length; $i++) {
             $data[$i] = $DefaultGid
@@ -231,7 +231,7 @@ function New-LayerData {
 
 function Set-Tile {
     param(
-        [int[]]$Data,
+        $Data,
         [int]$X,
         [int]$Y,
         [int]$Gid
@@ -244,7 +244,7 @@ function Set-Tile {
 
 function Fill-TileRect {
     param(
-        [int[]]$Data,
+        $Data,
         [int]$X,
         [int]$Y,
         [int]$Width,
@@ -260,7 +260,7 @@ function Fill-TileRect {
 
 function Set-HLine {
     param(
-        [int[]]$Data,
+        $Data,
         [int]$X,
         [int]$Y,
         [int]$Length,
@@ -273,7 +273,7 @@ function Set-HLine {
 
 function Set-VLine {
     param(
-        [int[]]$Data,
+        $Data,
         [int]$X,
         [int]$Y,
         [int]$Length,
@@ -326,7 +326,7 @@ function Write-MapFile {
     $ground = New-LayerData -DefaultGid $gidGrass
     $details = New-LayerData
     $furniture = New-LayerData
-    $start = New-LayerData
+    $spawnLayerData = New-LayerData
 
     Fill-TileRect -Data $ground -X 4 -Y 3 -Width 32 -Height 22 -Gid $gidWood
     Fill-TileRect -Data $ground -X 13 -Y 4 -Width 14 -Height 7 -Gid $gidTatami
@@ -389,11 +389,7 @@ function Write-MapFile {
         Set-Tile -Data $furniture -X $coord[0] -Y $coord[1] -Gid $gidBanner
     }
 
-    foreach ($coord in @(
-        @(19, 23), @(20, 23)
-    )) {
-        Set-Tile -Data $start -X $coord[0] -Y $coord[1] -Gid $gidWood
-    }
+    Fill-TileRect -Data $spawnLayerData -X 19 -Y 23 -Width 2 -Height 1 -Gid $gidWood
 
     $layers = @(
         [ordered]@{
@@ -433,7 +429,7 @@ function Write-MapFile {
             y = 0
         },
         [ordered]@{
-            data = $start
+            data = $spawnLayerData
             height = $mapHeight
             id = 4
             name = "start"

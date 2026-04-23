@@ -3,17 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vila Shinobi Office</title>
+  <title>Modern Office Prototype</title>
   <style>
     :root {
-      --paper: #f3ecd9;
-      --ink: #2f2218;
-      --earth: #8f5c3c;
-      --earth-deep: #5f3722;
-      --moss: #738d58;
-      --moss-soft: #d9e2c4;
-      --clay: #c98952;
-      --shadow: rgba(35, 22, 14, 0.16);
+      --bg: #edf2f8;
+      --panel: rgba(250, 252, 255, 0.86);
+      --panel-strong: #ffffff;
+      --ink: #1f2937;
+      --muted: #596579;
+      --line: rgba(133, 148, 170, 0.28);
+      --accent: #5d7c97;
+      --accent-soft: #dce7f4;
+      --accent-bright: #7ed4ff;
+      --shadow: rgba(31, 41, 55, 0.12);
     }
 
     * {
@@ -23,12 +25,12 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+      font-family: Aptos, "Segoe UI", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(217, 226, 196, 0.88), transparent 34%),
-        radial-gradient(circle at bottom right, rgba(201, 137, 82, 0.24), transparent 28%),
-        linear-gradient(145deg, #ede4cd 0%, #f7f1e1 48%, #e6dcc3 100%);
+        radial-gradient(circle at top left, rgba(221, 231, 244, 0.95), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(126, 212, 255, 0.22), transparent 24%),
+        linear-gradient(160deg, #eef3f8 0%, #f7f9fc 46%, #e9eff7 100%);
       overflow-x: hidden;
     }
 
@@ -36,30 +38,29 @@
     body::after {
       content: "";
       position: fixed;
-      inset: auto;
-      width: 320px;
-      height: 320px;
-      border-radius: 40px;
-      opacity: 0.18;
+      width: 360px;
+      height: 360px;
+      border-radius: 48px;
       pointer-events: none;
-      transform: rotate(18deg);
+      opacity: 0.18;
+      transform: rotate(16deg);
       background:
-        linear-gradient(90deg, transparent 0 44%, rgba(95, 55, 34, 0.34) 44% 56%, transparent 56%),
-        linear-gradient(transparent 0 44%, rgba(95, 55, 34, 0.34) 44% 56%, transparent 56%);
+        linear-gradient(90deg, transparent 0 45%, rgba(93, 124, 151, 0.32) 45% 55%, transparent 55%),
+        linear-gradient(transparent 0 45%, rgba(93, 124, 151, 0.32) 45% 55%, transparent 55%);
     }
 
     body::before {
-      top: -88px;
-      right: -100px;
+      top: -120px;
+      right: -130px;
     }
 
     body::after {
-      left: -120px;
-      bottom: -110px;
+      left: -150px;
+      bottom: -160px;
     }
 
     main {
-      width: min(1100px, calc(100% - 40px));
+      width: min(1160px, calc(100% - 40px));
       margin: 0 auto;
       padding: 48px 0 64px;
     }
@@ -67,55 +68,56 @@
     .hero {
       position: relative;
       padding: 42px;
-      border-radius: 28px;
-      background:
-        linear-gradient(135deg, rgba(243, 236, 217, 0.96), rgba(233, 225, 201, 0.98)),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent);
+      border-radius: 30px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.84), rgba(247, 250, 253, 0.92));
       box-shadow: 0 24px 60px var(--shadow);
       overflow: hidden;
+      backdrop-filter: blur(8px);
     }
 
     .hero::after {
       content: "";
       position: absolute;
-      inset: 24px;
-      border: 1px solid rgba(95, 55, 34, 0.14);
-      border-radius: 20px;
+      inset: 22px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
       pointer-events: none;
     }
 
     .eyebrow {
       display: inline-block;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(115, 141, 88, 0.16);
-      color: var(--earth-deep);
+      background: rgba(93, 124, 151, 0.12);
+      color: var(--accent);
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
     h1 {
       margin: 0 0 14px;
-      font-size: clamp(2.2rem, 5vw, 4.4rem);
-      line-height: 0.94;
-      letter-spacing: -0.04em;
+      font-family: Bahnschrift, Aptos, "Segoe UI", sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4.6rem);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
     }
 
     .hero p {
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 0 24px;
-      font-size: 1.05rem;
-      line-height: 1.65;
+      color: var(--muted);
+      font-size: 1.06rem;
+      line-height: 1.7;
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
 
     .button,
@@ -125,27 +127,27 @@
       border-radius: 14px;
       padding: 14px 18px;
       font: inherit;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
-      transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
       text-decoration: none;
+      transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
     }
 
     .button:hover,
     button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 14px 24px rgba(35, 22, 14, 0.18);
+      box-shadow: 0 14px 26px rgba(31, 41, 55, 0.16);
     }
 
     .button.primary {
-      color: #fff7ee;
-      background: linear-gradient(135deg, var(--earth) 0%, var(--earth-deep) 100%);
+      color: #f7fbff;
+      background: linear-gradient(135deg, #49637c 0%, #7a9ab7 100%);
     }
 
     .button.secondary,
     button.secondary {
-      color: var(--earth-deep);
-      background: rgba(115, 141, 88, 0.14);
+      color: var(--accent);
+      background: rgba(93, 124, 151, 0.12);
     }
 
     .grid {
@@ -157,44 +159,39 @@
 
     .card {
       padding: 22px;
-      border-radius: 22px;
-      background: rgba(255, 252, 245, 0.82);
-      box-shadow: 0 16px 32px rgba(35, 22, 14, 0.08);
-      backdrop-filter: blur(6px);
+      border-radius: 24px;
+      background: var(--panel);
+      box-shadow: 0 18px 34px rgba(31, 41, 55, 0.08);
+      backdrop-filter: blur(8px);
     }
 
     .card h2,
     .card h3 {
       margin: 0 0 10px;
-      font-size: 1.15rem;
+      font-size: 1.14rem;
     }
 
-    .card p,
-    .card li {
-      font-size: 0.98rem;
-      line-height: 1.6;
-    }
-
-    .card ul {
+    .card p {
       margin: 0;
-      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.65;
     }
 
     .layout {
       grid-column: span 7;
-      min-height: 340px;
-      background:
-        linear-gradient(180deg, rgba(219, 199, 157, 0.96), rgba(208, 190, 150, 0.92));
+      min-height: 380px;
       position: relative;
       overflow: hidden;
+      background: linear-gradient(180deg, #edf2f8 0%, #e8eef6 100%);
     }
 
     .layout::after {
       content: "";
       position: absolute;
       inset: 18px;
-      border: 3px solid rgba(95, 55, 34, 0.22);
-      border-radius: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(133, 148, 170, 0.22);
       pointer-events: none;
     }
 
@@ -214,69 +211,152 @@
     .chip {
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(95, 55, 34, 0.08);
+      background: rgba(93, 124, 151, 0.1);
+      color: var(--accent);
       font-size: 0.9rem;
       font-weight: 700;
     }
 
-    .map-box,
-    .map-workroom,
-    .map-station,
-    .map-entry {
+    .office-shell,
+    .office-floor,
+    .office-island,
+    .office-booth,
+    .office-counter,
+    .office-entry,
+    .office-rug,
+    .station,
+    .chair,
+    .plant {
       position: absolute;
-      border-radius: 18px;
     }
 
-    .map-box {
-      inset: 28px;
-      background: rgba(143, 92, 60, 0.78);
-      border: 6px solid rgba(95, 55, 34, 0.9);
+    .office-shell {
+      inset: 30px;
+      border-radius: 34px;
+      background: #d5deea;
+      border: 5px solid #9fadc0;
     }
 
-    .map-workroom {
-      left: 14%;
-      top: 16%;
-      width: 72%;
-      height: 58%;
-      background: rgba(255, 247, 230, 0.84);
-      border: 4px solid rgba(95, 55, 34, 0.8);
+    .office-floor {
+      left: 10%;
+      top: 14%;
+      width: 80%;
+      height: 68%;
+      border-radius: 28px;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          rgba(223, 230, 238, 0.76) 0 18px,
+          rgba(251, 252, 254, 0.88) 18px 36px
+        );
+      border: 2px solid #dbe3ee;
     }
 
-    .map-entry {
-      left: 45%;
-      bottom: 8%;
-      width: 10%;
-      height: 9%;
-      background: rgba(125, 122, 116, 0.92);
-      border-radius: 12px;
+    .office-rug {
+      left: 21%;
+      top: 34%;
+      width: 58%;
+      height: 28%;
+      border-radius: 28px;
+      background: rgba(220, 229, 240, 0.92);
     }
 
-    .map-station {
-      width: 42px;
-      height: 18px;
-      background: rgba(201, 137, 82, 0.92);
-      border: 3px solid rgba(95, 55, 34, 0.84);
-      border-radius: 10px;
+    .office-island {
+      left: 26%;
+      top: 42%;
+      width: 48%;
+      height: 18%;
+      border-radius: 28px;
+      background: linear-gradient(180deg, #5d6d7f 0%, #4f5d6d 100%);
+      box-shadow: 0 14px 28px rgba(31, 41, 55, 0.12);
     }
 
-    .map-station::after {
+    .office-island::before,
+    .office-island::after {
       content: "";
       position: absolute;
-      left: 10px;
-      top: 21px;
-      width: 16px;
-      height: 11px;
-      border-radius: 8px;
-      background: rgba(95, 55, 34, 0.88);
+      left: 8%;
+      width: 84%;
+      height: 10px;
+      border-radius: 999px;
+      background: #d5dde8;
+    }
+
+    .office-island::before {
+      top: 18%;
+    }
+
+    .office-island::after {
+      bottom: 18%;
+    }
+
+    .office-booth {
+      right: 12%;
+      top: 18%;
+      width: 18%;
+      height: 24%;
+      border-radius: 22px;
+      background: rgba(184, 223, 246, 0.42);
+      border: 4px solid #8fa4bb;
+      box-shadow: 0 12px 22px rgba(31, 41, 55, 0.1);
+    }
+
+    .office-counter {
+      left: 12%;
+      top: 20%;
+      width: 20%;
+      height: 12%;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #8b9bb0 0%, #6b7a8f 20%, #6b7a8f 100%);
+      box-shadow: 0 10px 20px rgba(31, 41, 55, 0.08);
+    }
+
+    .office-entry {
+      left: 45%;
+      bottom: 11%;
+      width: 10%;
+      height: 7%;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(141, 179, 211, 0.76), rgba(74, 103, 127, 0.9));
+    }
+
+    .station {
+      width: 22px;
+      height: 14px;
+      border-radius: 4px;
+      background: #1f2630;
+      box-shadow: inset 0 0 0 2px rgba(126, 212, 255, 0.12);
+    }
+
+    .station::after {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      border-radius: 3px;
+      background: #7ed4ff;
+    }
+
+    .chair {
+      width: 26px;
+      height: 14px;
+      border-radius: 7px;
+      background: #d9dde7;
+    }
+
+    .plant {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 35% 35%, #66c596 0%, #56b083 45%, #3ea576 100%);
     }
 
     .map-label {
       position: absolute;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      color: var(--ink);
       text-align: center;
+      color: var(--ink);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
     }
 
     .url-box {
@@ -289,16 +369,16 @@
       display: block;
       padding: 16px;
       border-radius: 16px;
-      background: rgba(47, 34, 24, 0.94);
-      color: #f8f3e8;
+      background: #1f2630;
+      color: #f8fbff;
       overflow-wrap: anywhere;
       font-size: 0.9rem;
     }
 
     .footer-note {
       margin-top: 28px;
+      color: var(--muted);
       font-size: 0.92rem;
-      color: rgba(47, 34, 24, 0.78);
     }
 
     @media (max-width: 920px) {
@@ -310,7 +390,7 @@
 
     @media (max-width: 640px) {
       main {
-        width: min(100% - 24px, 1100px);
+        width: min(100% - 24px, 1160px);
         padding-top: 24px;
       }
 
@@ -319,7 +399,7 @@
       }
 
       .layout {
-        min-height: 300px;
+        min-height: 320px;
       }
     }
   </style>
@@ -328,10 +408,10 @@
   <main>
     <section class="hero">
       <span class="eyebrow">WorkAdventure Prototype</span>
-      <h1>Vila Shinobi Office</h1>
+      <h1>Modern Office Prototype</h1>
       <p>
-        Sala unica e compacta para ate 10 pessoas, com estacoes individuais
-        e foco em uso continuo como espaco de trabalho compartilhado.
+        Escritorio moderno com uma unica sala para 10 pessoas, ilha central de trabalho,
+        notebooks, apoio lateral e um booth privado para conversas mais reservadas.
       </p>
 
       <div class="actions">
@@ -342,33 +422,55 @@
 
       <div class="grid">
         <article class="card layout">
-          <div class="map-box"></div>
-          <div class="map-workroom"></div>
-          <div class="map-station" style="left: 22%; top: 31%;"></div>
-          <div class="map-station" style="left: 31%; top: 31%;"></div>
-          <div class="map-station" style="left: 40%; top: 31%;"></div>
-          <div class="map-station" style="left: 49%; top: 31%;"></div>
-          <div class="map-station" style="left: 58%; top: 31%;"></div>
-          <div class="map-station" style="left: 22%; top: 53%;"></div>
-          <div class="map-station" style="left: 31%; top: 53%;"></div>
-          <div class="map-station" style="left: 40%; top: 53%;"></div>
-          <div class="map-station" style="left: 49%; top: 53%;"></div>
-          <div class="map-station" style="left: 58%; top: 53%;"></div>
-          <div class="map-entry"></div>
+          <div class="office-shell"></div>
+          <div class="office-floor"></div>
+          <div class="office-rug"></div>
+          <div class="office-counter"></div>
+          <div class="office-booth"></div>
+          <div class="office-island"></div>
+          <div class="office-entry"></div>
 
-          <span class="map-label" style="left: 38%; top: 19%;">Sala compartilhada</span>
-          <span class="map-label" style="left: 34%; top: 45%;">10 estacoes individuais</span>
-          <span class="map-label" style="left: 45%; bottom: 11%;">Entrada</span>
+          <div class="station" style="left: 31%; top: 44%;"></div>
+          <div class="station" style="left: 39%; top: 44%;"></div>
+          <div class="station" style="left: 47%; top: 44%;"></div>
+          <div class="station" style="left: 55%; top: 44%;"></div>
+          <div class="station" style="left: 63%; top: 44%;"></div>
+          <div class="station" style="left: 31%; top: 54%;"></div>
+          <div class="station" style="left: 39%; top: 54%;"></div>
+          <div class="station" style="left: 47%; top: 54%;"></div>
+          <div class="station" style="left: 55%; top: 54%;"></div>
+          <div class="station" style="left: 63%; top: 54%;"></div>
+
+          <div class="chair" style="left: 30.7%; top: 38%;"></div>
+          <div class="chair" style="left: 38.7%; top: 38%;"></div>
+          <div class="chair" style="left: 46.7%; top: 38%;"></div>
+          <div class="chair" style="left: 54.7%; top: 38%;"></div>
+          <div class="chair" style="left: 62.7%; top: 38%;"></div>
+          <div class="chair" style="left: 30.7%; top: 62%;"></div>
+          <div class="chair" style="left: 38.7%; top: 62%;"></div>
+          <div class="chair" style="left: 46.7%; top: 62%;"></div>
+          <div class="chair" style="left: 54.7%; top: 62%;"></div>
+          <div class="chair" style="left: 62.7%; top: 62%;"></div>
+
+          <div class="plant" style="left: 16%; top: 68%;"></div>
+          <div class="plant" style="right: 15%; top: 24%;"></div>
+          <div class="plant" style="right: 15%; top: 68%;"></div>
+
+          <span class="map-label" style="left: 36%; top: 21%;">Sala principal</span>
+          <span class="map-label" style="left: 36%; top: 69%;">10 estacoes com notebooks</span>
+          <span class="map-label" style="right: 11%; top: 43%;">Booth privado</span>
+          <span class="map-label" style="left: 12%; top: 35%;">Coffee bar</span>
+          <span class="map-label" style="left: 44%; bottom: 10%;">Entrada</span>
         </article>
 
         <div class="stats">
           <article class="card">
             <h2>Espacos incluidos</h2>
             <div class="chips">
-              <span class="chip">10 mesas individuais</span>
-              <span class="chip">1 sala compartilhada</span>
-              <span class="chip">layout compacto</span>
-              <span class="chip">uso continuo</span>
+              <span class="chip">10 mesas com notebook</span>
+              <span class="chip">1 ilha central</span>
+              <span class="chip">1 booth privado</span>
+              <span class="chip">1 coffee bar</span>
             </div>
           </article>
 
@@ -391,7 +493,7 @@
       </div>
 
       <p class="footer-note">
-        Inspiracao original em uma vila ninja corporativa, sem uso de personagens, logos ou artes oficiais.
+        Esta versao troca totalmente a estetica placeholder por um escritorio clean, neutro e contemporaneo.
       </p>
     </section>
   </main>

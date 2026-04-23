@@ -16,6 +16,7 @@ foreach ($dir in @($assetsDir, $mapsDir, $docsDir)) {
 
 $tilesetPath = Join-Path $assetsDir "ninja-office-tiles.png"
 $mapPath = Join-Path $mapsDir "ninja-office-prototype.tmj"
+$mapJsonPath = Join-Path $mapsDir "ninja-office-prototype.json"
 $previewPath = Join-Path $docsDir "layout-preview.svg"
 
 $tileSize = 32
@@ -533,6 +534,7 @@ function Write-MapFile {
 
     $json = $map | ConvertTo-Json -Depth 100
     Set-Content -Path $mapPath -Value $json -Encoding utf8
+    Set-Content -Path $mapJsonPath -Value $json -Encoding utf8
 }
 
 function Write-LayoutPreview {
@@ -573,4 +575,5 @@ Write-LayoutPreview
 
 Write-Host "Tileset criado em: $tilesetPath"
 Write-Host "Mapa criado em: $mapPath"
+Write-Host "Mapa JSON criado em: $mapJsonPath"
 Write-Host "Preview criado em: $previewPath"

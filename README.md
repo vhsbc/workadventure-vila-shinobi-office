@@ -15,7 +15,8 @@ This project is intentionally separate from `FlowMate`. It contains a light, ori
 ## Key files
 
 - `index.html`: public landing page for GitHub Pages
-- `maps/ninja-office-prototype.tmj`: main WorkAdventure map
+- `maps/ninja-office-prototype.json`: main WorkAdventure map for public hosting
+- `maps/ninja-office-prototype.tmj`: Tiled-oriented version of the same map
 - `assets/tiles/ninja-office-tiles.png`: custom prototype tileset
 - `tools/New-PrototypeMap.ps1`: regenerates the map, tileset, and SVG preview
 - `docs/layout.md`: functional layout notes
@@ -52,13 +53,13 @@ https://<your-user>.github.io/<your-repo>/
 That landing page automatically computes the WorkAdventure test URL for:
 
 ```text
-https://<your-user>.github.io/<your-repo>/maps/ninja-office-prototype.tmj
+https://<your-user>.github.io/<your-repo>/maps/ninja-office-prototype.json
 ```
 
 ## Direct WorkAdventure URL pattern
 
 ```text
-https://play.workadventu.re/_/global/<your-user>.github.io/<your-repo>/maps/ninja-office-prototype.tmj
+https://play.workadventu.re/_/global/<your-user>.github.io/<your-repo>/maps/ninja-office-prototype.json
 ```
 
 ## Next steps

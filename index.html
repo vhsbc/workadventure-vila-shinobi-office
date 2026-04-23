@@ -220,9 +220,8 @@
     }
 
     .map-box,
-    .map-room,
-    .map-bay,
-    .map-table,
+    .map-workroom,
+    .map-station,
     .map-entry {
       position: absolute;
       border-radius: 18px;
@@ -234,57 +233,41 @@
       border: 6px solid rgba(95, 55, 34, 0.9);
     }
 
-    .map-room {
-      left: 32%;
-      top: 12%;
-      width: 36%;
-      height: 22%;
+    .map-workroom {
+      left: 14%;
+      top: 16%;
+      width: 72%;
+      height: 58%;
       background: rgba(255, 247, 230, 0.84);
       border: 4px solid rgba(95, 55, 34, 0.8);
-    }
-
-    .map-bay {
-      top: 27%;
-      width: 16%;
-      height: 45%;
-      background: rgba(115, 141, 88, 0.34);
-      border: 4px solid rgba(79, 103, 62, 0.8);
-    }
-
-    .map-bay.left {
-      left: 12%;
-    }
-
-    .map-bay.right {
-      right: 12%;
-    }
-
-    .map-table {
-      left: 39%;
-      top: 43%;
-      width: 22%;
-      height: 14%;
-      background: rgba(201, 137, 82, 0.92);
-      border: 4px solid rgba(95, 55, 34, 0.84);
     }
 
     .map-entry {
-      left: 44%;
-      bottom: 7%;
-      width: 12%;
-      height: 10%;
+      left: 45%;
+      bottom: 8%;
+      width: 10%;
+      height: 9%;
       background: rgba(125, 122, 116, 0.92);
+      border-radius: 12px;
     }
 
-    .map-feedback {
+    .map-station {
+      width: 42px;
+      height: 18px;
+      background: rgba(201, 137, 82, 0.92);
+      border: 3px solid rgba(95, 55, 34, 0.84);
+      border-radius: 10px;
+    }
+
+    .map-station::after {
+      content: "";
       position: absolute;
-      left: 34%;
-      bottom: 15%;
-      width: 32%;
-      height: 16%;
-      border-radius: 18px;
-      background: rgba(255, 247, 230, 0.84);
-      border: 4px solid rgba(95, 55, 34, 0.8);
+      left: 10px;
+      top: 21px;
+      width: 16px;
+      height: 11px;
+      border-radius: 8px;
+      background: rgba(95, 55, 34, 0.88);
     }
 
     .map-label {
@@ -347,8 +330,8 @@
       <span class="eyebrow">WorkAdventure Prototype</span>
       <h1>Vila Shinobi Office</h1>
       <p>
-        Ambiente leve e descontraido para ate 10 pessoas, com baias silenciosas,
-        uma mesa compartilhada, sala de reuniao de equipe e sala reservada para feedback 1:1.
+        Sala unica e compacta para ate 10 pessoas, com estacoes individuais
+        e foco em uso continuo como espaco de trabalho compartilhado.
       </p>
 
       <div class="actions">
@@ -360,19 +343,22 @@
       <div class="grid">
         <article class="card layout">
           <div class="map-box"></div>
-          <div class="map-room"></div>
-          <div class="map-bay left"></div>
-          <div class="map-bay right"></div>
-          <div class="map-table"></div>
-          <div class="map-feedback"></div>
+          <div class="map-workroom"></div>
+          <div class="map-station" style="left: 22%; top: 31%;"></div>
+          <div class="map-station" style="left: 31%; top: 31%;"></div>
+          <div class="map-station" style="left: 40%; top: 31%;"></div>
+          <div class="map-station" style="left: 49%; top: 31%;"></div>
+          <div class="map-station" style="left: 58%; top: 31%;"></div>
+          <div class="map-station" style="left: 22%; top: 53%;"></div>
+          <div class="map-station" style="left: 31%; top: 53%;"></div>
+          <div class="map-station" style="left: 40%; top: 53%;"></div>
+          <div class="map-station" style="left: 49%; top: 53%;"></div>
+          <div class="map-station" style="left: 58%; top: 53%;"></div>
           <div class="map-entry"></div>
 
-          <span class="map-label" style="left: 39%; top: 17%;">Sala de reuniao</span>
-          <span class="map-label" style="left: 14%; top: 32%;">5 estacoes<br>silenciosas</span>
-          <span class="map-label" style="right: 13%; top: 32%;">5 estacoes<br>silenciosas</span>
-          <span class="map-label" style="left: 39%; top: 47%;">Mesa compartilhada</span>
-          <span class="map-label" style="left: 40%; bottom: 22%;">Feedback 1:1</span>
-          <span class="map-label" style="left: 45%; bottom: 10%;">Entrada</span>
+          <span class="map-label" style="left: 38%; top: 19%;">Sala compartilhada</span>
+          <span class="map-label" style="left: 34%; top: 45%;">10 estacoes individuais</span>
+          <span class="map-label" style="left: 45%; bottom: 11%;">Entrada</span>
         </article>
 
         <div class="stats">
@@ -380,10 +366,9 @@
             <h2>Espacos incluidos</h2>
             <div class="chips">
               <span class="chip">10 mesas individuais</span>
-              <span class="chip">1 mesa compartilhada</span>
-              <span class="chip">1 sala de equipe</span>
-              <span class="chip">1 sala 1:1</span>
-              <span class="chip">2 zonas silenciosas</span>
+              <span class="chip">1 sala compartilhada</span>
+              <span class="chip">layout compacto</span>
+              <span class="chip">uso continuo</span>
             </div>
           </article>
 

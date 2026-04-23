@@ -6,11 +6,10 @@ This project is intentionally separate from `FlowMate`. It contains a light, ori
 
 ## Current scope
 
+- 1 shared room for up to 10 people
 - 10 individual workstations
-- 1 shared table for quick syncs
-- 1 team meeting room
-- 1 private `1:1` feedback room
-- 2 silent work bays
+- compact layout for all-day collaborative use
+- simplified baseline for the next visual iteration
 
 ## Key files
 
@@ -64,6 +63,6 @@ https://play.workadventu.re/_/global/<your-user>.github.io/<your-repo>/maps/ninj
 
 ## Next steps
 
-1. Open the map in Tiled and refine decoration.
-2. Push the standalone repository to GitHub.
+1. Improve the tileset and visual language for a cleaner, more modern office.
+2. Open the map in Tiled and refine decoration.
 3. Share the GitHub Pages URL or the direct WorkAdventure URL with the team.

@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vila Shinobi Office</title>
+  <style>
+    :root {
+      --paper: #f3ecd9;
+      --ink: #2f2218;
+      --earth: #8f5c3c;
+      --earth-deep: #5f3722;
+      --moss: #738d58;
+      --moss-soft: #d9e2c4;
+      --clay: #c98952;
+      --shadow: rgba(35, 22, 14, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(217, 226, 196, 0.88), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(201, 137, 82, 0.24), transparent 28%),
+        linear-gradient(145deg, #ede4cd 0%, #f7f1e1 48%, #e6dcc3 100%);
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 40px;
+      opacity: 0.18;
+      pointer-events: none;
+      transform: rotate(18deg);
+      background:
+        linear-gradient(90deg, transparent 0 44%, rgba(95, 55, 34, 0.34) 44% 56%, transparent 56%),
+        linear-gradient(transparent 0 44%, rgba(95, 55, 34, 0.34) 44% 56%, transparent 56%);
+    }
+
+    body::before {
+      top: -88px;
+      right: -100px;
+    }
+
+    body::after {
+      left: -120px;
+      bottom: -110px;
+    }
+
+    main {
+      width: min(1100px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 48px 0 64px;
+    }
+
+    .hero {
+      position: relative;
+      padding: 42px;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(243, 236, 217, 0.96), rgba(233, 225, 201, 0.98)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent);
+      box-shadow: 0 24px 60px var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 24px;
+      border: 1px solid rgba(95, 55, 34, 0.14);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(115, 141, 88, 0.16);
+      color: var(--earth-deep);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2.2rem, 5vw, 4.4rem);
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 0 24px;
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+
+    .button,
+    button {
+      appearance: none;
+      border: 0;
+      border-radius: 14px;
+      padding: 14px 18px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+      text-decoration: none;
+    }
+
+    .button:hover,
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px rgba(35, 22, 14, 0.18);
+    }
+
+    .button.primary {
+      color: #fff7ee;
+      background: linear-gradient(135deg, var(--earth) 0%, var(--earth-deep) 100%);
+    }
+
+    .button.secondary,
+    button.secondary {
+      color: var(--earth-deep);
+      background: rgba(115, 141, 88, 0.14);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .card {
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255, 252, 245, 0.82);
+      box-shadow: 0 16px 32px rgba(35, 22, 14, 0.08);
+      backdrop-filter: blur(6px);
+    }
+
+    .card h2,
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
+
+    .card p,
+    .card li {
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .layout {
+      grid-column: span 7;
+      min-height: 340px;
+      background:
+        linear-gradient(180deg, rgba(219, 199, 157, 0.96), rgba(208, 190, 150, 0.92));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .layout::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 3px solid rgba(95, 55, 34, 0.22);
+      border-radius: 18px;
+      pointer-events: none;
+    }
+
+    .stats {
+      grid-column: span 5;
+      display: grid;
+      gap: 18px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(95, 55, 34, 0.08);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .map-box,
+    .map-room,
+    .map-bay,
+    .map-table,
+    .map-entry {
+      position: absolute;
+      border-radius: 18px;
+    }
+
+    .map-box {
+      inset: 28px;
+      background: rgba(143, 92, 60, 0.78);
+      border: 6px solid rgba(95, 55, 34, 0.9);
+    }
+
+    .map-room {
+      left: 32%;
+      top: 12%;
+      width: 36%;
+      height: 22%;
+      background: rgba(255, 247, 230, 0.84);
+      border: 4px solid rgba(95, 55, 34, 0.8);
+    }
+
+    .map-bay {
+      top: 27%;
+      width: 16%;
+      height: 45%;
+      background: rgba(115, 141, 88, 0.34);
+      border: 4px solid rgba(79, 103, 62, 0.8);
+    }
+
+    .map-bay.left {
+      left: 12%;
+    }
+
+    .map-bay.right {
+      right: 12%;
+    }
+
+    .map-table {
+      left: 39%;
+      top: 43%;
+      width: 22%;
+      height: 14%;
+      background: rgba(201, 137, 82, 0.92);
+      border: 4px solid rgba(95, 55, 34, 0.84);
+    }
+
+    .map-entry {
+      left: 44%;
+      bottom: 7%;
+      width: 12%;
+      height: 10%;
+      background: rgba(125, 122, 116, 0.92);
+    }
+
+    .map-feedback {
+      position: absolute;
+      left: 34%;
+      bottom: 15%;
+      width: 32%;
+      height: 16%;
+      border-radius: 18px;
+      background: rgba(255, 247, 230, 0.84);
+      border: 4px solid rgba(95, 55, 34, 0.8);
+    }
+
+    .map-label {
+      position: absolute;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-align: center;
+    }
+
+    .url-box {
+      display: grid;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    code {
+      display: block;
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(47, 34, 24, 0.94);
+      color: #f8f3e8;
+      overflow-wrap: anywhere;
+      font-size: 0.9rem;
+    }
+
+    .footer-note {
+      margin-top: 28px;
+      font-size: 0.92rem;
+      color: rgba(47, 34, 24, 0.78);
+    }
+
+    @media (max-width: 920px) {
+      .layout,
+      .stats {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      main {
+        width: min(100% - 24px, 1100px);
+        padding-top: 24px;
+      }
+
+      .hero {
+        padding: 26px;
+      }
+
+      .layout {
+        min-height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <span class="eyebrow">WorkAdventure Prototype</span>
+      <h1>Vila Shinobi Office</h1>
+      <p>
+        Ambiente leve e descontraido para ate 10 pessoas, com baias silenciosas,
+        uma mesa compartilhada, sala de reuniao de equipe e sala reservada para feedback 1:1.
+      </p>
+
+      <div class="actions">
+        <a class="button primary" id="launch-link" href="#">Entrar no mapa</a>
+        <a class="button secondary" id="map-link" href="#">Abrir arquivo do mapa</a>
+        <button class="secondary" id="copy-link" type="button">Copiar link WorkAdventure</button>
+      </div>
+
+      <div class="grid">
+        <article class="card layout">
+          <div class="map-box"></div>
+          <div class="map-room"></div>
+          <div class="map-bay left"></div>
+          <div class="map-bay right"></div>
+          <div class="map-table"></div>
+          <div class="map-feedback"></div>
+          <div class="map-entry"></div>
+
+          <span class="map-label" style="left: 39%; top: 17%;">Sala de reuniao</span>
+          <span class="map-label" style="left: 14%; top: 32%;">5 estacoes<br>silenciosas</span>
+          <span class="map-label" style="right: 13%; top: 32%;">5 estacoes<br>silenciosas</span>
+          <span class="map-label" style="left: 39%; top: 47%;">Mesa compartilhada</span>
+          <span class="map-label" style="left: 40%; bottom: 22%;">Feedback 1:1</span>
+          <span class="map-label" style="left: 45%; bottom: 10%;">Entrada</span>
+        </article>
+
+        <div class="stats">
+          <article class="card">
+            <h2>Espacos incluidos</h2>
+            <div class="chips">
+              <span class="chip">10 mesas individuais</span>
+              <span class="chip">1 mesa compartilhada</span>
+              <span class="chip">1 sala de equipe</span>
+              <span class="chip">1 sala 1:1</span>
+              <span class="chip">2 zonas silenciosas</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Publicacao</h3>
+            <p>
+              Esta pagina usa a propria URL publica do GitHub Pages para montar o link do WorkAdventure.
+              Depois do deploy, basta compartilhar esta home ou o link direto abaixo.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Link gerado</h3>
+            <div class="url-box">
+              <code id="wa-url">Aguardando URL publica...</code>
+              <span id="copy-status">Copie o link depois do deploy no GitHub Pages.</span>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <p class="footer-note">
+        Inspiracao original em uma vila ninja corporativa, sem uso de personagens, logos ou artes oficiais.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var mapUrl = new URL("./maps/ninja-office-prototype.tmj", window.location.href);
+      var workAdventureUrl = "https://play.workadventu.re/_/global/" + mapUrl.host + mapUrl.pathname;
+      var launchLink = document.getElementById("launch-link");
+      var mapLink = document.getElementById("map-link");
+      var waUrl = document.getElementById("wa-url");
+      var copyButton = document.getElementById("copy-link");
+      var copyStatus = document.getElementById("copy-status");
+
+      launchLink.href = workAdventureUrl;
+      mapLink.href = mapUrl.href;
+      waUrl.textContent = workAdventureUrl;
+
+      copyButton.addEventListener("click", function () {
+        if (!navigator.clipboard) {
+          copyStatus.textContent = "Clipboard API indisponivel neste navegador.";
+          return;
+        }
+
+        navigator.clipboard.writeText(workAdventureUrl).then(function () {
+          copyStatus.textContent = "Link copiado.";
+        }).catch(function () {
+          copyStatus.textContent = "Nao foi possivel copiar o link.";
+        });
+      });
+    }());
+  </script>
+</body>
+</html>
